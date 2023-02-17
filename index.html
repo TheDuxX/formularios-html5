@@ -9,10 +9,124 @@
 </head>
 <body>
     <h1>Meu primeiro formulário</h1>
-    <form action="cadastro.php" method="post" autocomplete="on">
-        <label for="itel">Input</label>
-        <input type="tel" name="tel" id="itel" autocomplete="tel" required  >
-   
-    </form>
+        <fieldset> <!-- Nome, Email, tel, listas e botões -->
+            <legend>Dados Pessoais</legend>
+            <form action="cadastro.php" method="post" autocomplete="on">
+                <p>
+                    <Label id="nome">Nome Completo: </Label>
+                    <input type="text" name="nome" id="nome" autocomplete="name" required placeholder="digite seu nome">
+                </p>
+                <p>
+                    <label for="email">E-mail: </label>
+                    <input type="email" name="email" id="email" autocomplete="email" required placeholder="digite seu e-mail"> 
+                </p>
+                <p>
+                    <label for="tel">Telefone: </label>
+                    <input type="tel" name="tel" id="tel" autocomplete="tel" pattern="^\(\d{2}\)\d{4,5}-\d{4}$" required placeholder="(xx)xxxxx-xxxx">
+                </p>
+                <p>
+                    <label for="sexo">Qual seu sexo: </label><br>
+                    <input type="radio" name="sexo" id="sexo-m" checked> Masculino <br>
+                    <input type="radio" name="sexo" id="sexo-f"> Feminino
+                </p>
+                <p>
+                    <label for="check">Selecione suas preferências: </label><br>
+                    <input type="checkbox" name="foot" id="foot"> Futebol <br>
+                    <input type="checkbox" name="volei" id="volei"> Voleibol <br>
+                    <input type="checkbox" name="Baskt" id="Baskt"> Basquetebol <br>
+                </p>
+                <p>
+                    <label for="est">Qual o seu estado: </label>
+                    <select name="est" id="est">
+                        <option value="">-- Selecione seu estado --</option>
+                        <optgroup label="Região Sudeste">
+                            <option value="SP">São Paulo</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="MG">Minas Gerais</option>
+                        </optgroup>
+
+                        <optgroup label="Região Sul">
+                            <option value="SC">Santa Catarina</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="PR">Paraná</option>
+                        </optgroup>
+                    </select>
+                </p>
+                <p>
+                    <label for="prof">Profissão</label>
+                    <input type="text" name="prof" id="prof" list="listprof" placeholder="Informe sua profissão">
+                    <datalist id="listprof">
+                        <option>Administrador</option>
+                        <option>Desenvolvedor</option>
+                        <option>Design</option>
+                        <option>Professor</option>
+                    </datalist>
+                </p>
+                <p>
+                    <input type="submit" value="Enviar">
+                    <input type="reset" value="Limpar">
+
+                </p>
+            </form>
+        </fieldset>
+        <fieldset> <!-- Soma --> 
+            <legend>Soma</legend>
+            <p>
+                <label for="in1">Número 1: </label>
+                <input type="number" name="n1" id="in1" min="0" max="50" required oninput="isoma.innerHTML = Number(in1.value) + Number(in2.value)">
+            </p>
+            <p>
+                <label for="in2">Número 2:</label>
+                <input type="number" name="n2" id="in2" min="0" max="50" required oninput="isoma.innerHTML = Number(in1.value) + Number(in2.value)">
+            </p>
+            <p>
+                <label for="isoma">Soma:</label>
+                <output name="soma" id="isoma">0</output>
+            </p>
+        </fieldset>
+        <fieldset> <!-- Range, cor, file e msg -->
+            <legend>Variáveis
+
+            </legend>
+            <form action="cadastro.php" method="get" autocomplete="on">
+                <p>
+                    <label for="inum">Número: </label>
+                    <input type="range" name="num" id="inum" min="0" max="10" value="5" oninput="ival.innerHTML = Number(inum.value)">
+                    <output id="ival">5</output>
+                </p>
+                <p>
+                    <label for="cor">Selecione uma cor: </label>
+                    <input type="color" name="cor" id="cor" value="#2675fc">
+                </p>
+                <p>
+                    <label for="file">Insira seu arquivo: </label>
+                    <input type="file" name="file" id="file">
+                </p>
+                <p>
+                    <label for="msg">Mensagem:</label><br>
+                    <textarea name="msg" id="msg" cols="120" rows="5" placeholder="Deixe aqui sua mensagem"></textarea>
+                </p>
+            </form>
+        </fieldset>
+        <fieldset> <!-- Idade -->
+            <legend>Idade</legend>
+            <form action="cadastro.php">
+                <p>
+                    <label for="iano">Em que ano você nasceu?</label>
+                    <input type="number" name="ano" id="iano" min="1930" max="2023" oninput="calcIdade()">
+                </p>
+
+                <p>
+                    <label for="iidade">Sua idade é:</label>
+                    <output id="iidade">0</output>
+                </p>
+            </form>
+        </fieldset>
+        <script>
+            function calcIdade() {
+                let atual = new Date().getFullYear()
+                iidade.innerHTML = Number(atual) - Number(iano.value)
+            }
+        </script>
 </body>
 </html>
